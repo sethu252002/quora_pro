@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quora-like Website</title>
+</head>
+<body>
+    <h1>Welcome to the Quora-like Website</h1>
+    <a href="{% url 'post_question' %}">Post a Question</a>
+    
+    <ul>
+        {% for question in questions %}
+            <li>
+                <h2>{{ question.title }}</h2>
+                <p>{{ question.content }}</p>
+                <p>Posted by {{ question.user.username }} on {{ question.created_at }}</p>
+                <a href="{% url 'post_answer' question.id %}">Answer this question</a>
+            </li>
+        {% empty %}
+            <p>No questions available.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
